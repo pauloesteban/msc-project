@@ -1,12 +1,11 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-import time
+#import time
 import pandas as pd
-#import sys
+import sys
 import os
 #import cPickle as pickle
-
-os.chdir('/Users/paulochiliguano/Documents/QMUL/msc-project/dataset/taste_profile')
 
 # Read songIDs from Million Song Dataset songID-trackID mismatches
 def read_songid_mismatches(filename):
@@ -31,12 +30,28 @@ def delete_mismatch_triplets(tripletsfile, mismatchesfile):
             ):
         chunk = chunk[~chunk.songId.isin(mismatches)]
         #chunk.to_csv(filename_out, mode='a', header=False, index=False)
-        chunk.to_hdf('../train_triplets_clean.h5','triplets', mode='a', format='table', append=True, complevel=9, complib='zlib')
+        chunk.to_hdf(
+                '../train_triplets_clean.h5',
+                'triplets',
+                mode='a',
+                format='table',
+                append=True,
+                complevel=9,
+                complib='zlib'
+                )
+    print("Done")
 #elapsed_time = time.time() - start_time
 
+if __name__ == '__main__':
+    if len(sys.argv) < 1:
+        print("Not enough arguments %s" % sys.argv[0])
+        sys.exit()
+    taste_profile_path = os.path.abspath(sys.argv[1])
+    os.chdir(taste_profile_path)
+    delete_mismatch_triplets('train_triplets.txt','sid_mismatches.txt')
+#a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
 
-
-
+'''
 # Select most active users
 start_time = time.time()
 played_songs = 1000
@@ -52,10 +67,10 @@ df_active = df.groupby('user').filter(lambda x: len(x) > played_songs)
 print("Saving user-item matrix as dataframe...")
 df_active.to_pickle('../dataset/CF_dataset.pkl')
 
-'''f = file('/Users/paulochiliguano/Documents/msc-project/dataset/\
-CF_dataset.pkl', 'wb')
-pickle.dump(df_active, f, protocol=pickle.HIGHEST_PROTOCOL)
-f.close()'''
+#f = file('/Users/paulochiliguano/Documents/msc-project/dataset/\
+#CF_dataset.pkl', 'wb')
+#pickle.dump(df_active, f, protocol=pickle.HIGHEST_PROTOCOL)
+#f.close()
 
 # Select most frequent songs
 frequent_songs = 1500
@@ -69,6 +84,7 @@ with open(filename, 'wb') as f:
         f.write("%s\n" % item)
 elapsed_time = time.time() - start_time
 print("Execution time: %.3f seconds" % elapsed_time)
+'''
 
 '''
 #important
@@ -101,11 +117,3 @@ for chunk in pd.read_csv('/homes/pchilguano/dataset/train_triplets_wo_mismatches
     print (result.shape)
 '''
 
-#if __name__ == '__main__':
-    #if len(sys.argv) < 2:
-        #print("Not enough arguments %s" % sys.argv[0])
-        #sys.exit()
-    #taste_profile_path = os.path.abspath(sys.argv[1])
-    #os.chdir(taste_profile_path)
-delete_mismatch_triplets('train_triplets.txt','sid_mismatches.txt')
-a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
