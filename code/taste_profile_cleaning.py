@@ -1,65 +1,56 @@
-
-
-
-
-
-
-
+#!/usr/bin/env python
 
 import time
 import pandas as pd
+#import sys
+import os
 #import cPickle as pickle
 
+os.chdir('/Users/paulochiliguano/Documents/QMUL/msc-project/dataset/taste_profile')
+
 # Read songIDs from Million Song Dataset songID-trackID mismatches
-start_time = time.time()
-print 'Reading songID mismatches...'
-filename = '/Users/paulochiliguano/Documents/msc-project/dataset/taste_profile\
-sid_mismatches.txt'
-with open(filename, 'rb') as f:
-    mismatches = set()    
-    next = f.readline()
-    while next != "":
-        songID = next[8:26]
-        mismatches.add(songID)
-        #print(next[8:26])
-        next = f.readline()
+def read_songid_mismatches(filename):
+    #start_time = time.time()
+    with open(filename, 'r+') as f:
+        songIdMismatches = set()
+        for line in f:
+            songIdMismatches.add(line[8:26])
+    return songIdMismatches
 
 # Delete rows with songIDs mismatches from Taste Profile Subset
-print 'Reading Taste Profile subset...'
-result = pd.DataFrame()
-filename = '/Users/paulochiliguano/Documents/msc-project/dataset/taste_profile\
-/train_triplets.txt'
-filename_out = '/Users/paulochiliguano/Documents/msc-project/dataset/\
-/train_triplets_wo_mismatches.csv'
-for chunk in pd.read_csv(
-        filename,
-        low_memory=False,
-        delim_whitespace=True, 
-        chunksize=20000,
-        names=['user', 'song', 'plays'],
-        header=None):
-    chunk = chunk[~chunk.song.isin(mismatches)]
-    chunk.to_csv(filename_out, mode='a', header=False, index=False)
-    #result = result.append(chunk, ignore_index=True)
-elapsed_time = time.time() - start_time
-print 'Execution time: %.3f seconds' % elapsed_time
-#result.to_pickle('/homes/pchilguano/dataset/train_triplets_wo_mismatch.pkl')
+def delete_mismatch_triplets(tripletsfile, mismatchesfile):
+    print("Reading songID mismatches...")
+    mismatches = read_songid_mismatches(mismatchesfile)
+    print("There are %d songId-trackId mismatches" % len(mismatches))
+    print("Reading Taste Profile subset...")
+    for chunk in pd.read_table(
+            tripletsfile,
+            header=None,
+            names=['userId', 'songId', 'numPlays'],
+            chunksize=10*len(mismatches),
+            ):
+        chunk = chunk[~chunk.songId.isin(mismatches)]
+        #chunk.to_csv(filename_out, mode='a', header=False, index=False)
+        chunk.to_hdf('../train_triplets_clean.h5','triplets', mode='a', format='table', append=True, complevel=9, complib='zlib')
+#elapsed_time = time.time() - start_time
+
+
+
 
 # Select most active users
 start_time = time.time()
 played_songs = 1000
-print 'Reading (filtered) Taste Profile subset...'
+print("Reading (filtered) Taste Profile subset...")
 df = pd.read_csv(
     filename_out,
     delim_whitespace=False,
     header=None,
     names=['user','song','plays'])
-print 'Selecting most active users (> %d ratings)...' % played_songs
+print("Selecting most active users (> %d ratings)..." % played_songs)
 df_active = df.groupby('user').filter(lambda x: len(x) > played_songs)
 
-print 'Saving user-item matrix as dataframe...'
-df_active.to_pickle('/Users/paulochiliguano/Documents/msc-project/dataset/\
-CF_dataset.pkl')
+print("Saving user-item matrix as dataframe...")
+df_active.to_pickle('../dataset/CF_dataset.pkl')
 
 '''f = file('/Users/paulochiliguano/Documents/msc-project/dataset/\
 CF_dataset.pkl', 'wb')
@@ -68,17 +59,16 @@ f.close()'''
 
 # Select most frequent songs
 frequent_songs = 1500
-print 'Selecting %d frequent songs...' % frequent_songs
+print("Selecting %d frequent songs..." % frequent_songs)
 counts = df_active['song'].value_counts().head(frequent_songs)
 #df_active = df_active.loc[df_active['song'].isin(counts.index), :]
-print 'Saving Echonest songID list...'
-filename = '/Users/paulochiliguano/Documents/msc-project/dataset/\
-CF_dataset_songID.txt'
+print("Saving Echonest songID list...")
+filename = '../dataset/CF_dataset_songID.txt'
 with open(filename, 'wb') as f:
     for item in counts.index.tolist():
         f.write("%s\n" % item)
 elapsed_time = time.time() - start_time
-print 'Execution time: %.3f seconds' % elapsed_time
+print("Execution time: %.3f seconds" % elapsed_time)
 
 '''
 #important
@@ -110,3 +100,12 @@ for chunk in pd.read_csv('/homes/pchilguano/dataset/train_triplets_wo_mismatches
     , ignore_index=True)
     print (result.shape)
 '''
+
+#if __name__ == '__main__':
+    #if len(sys.argv) < 2:
+        #print("Not enough arguments %s" % sys.argv[0])
+        #sys.exit()
+    #taste_profile_path = os.path.abspath(sys.argv[1])
+    #os.chdir(taste_profile_path)
+delete_mismatch_triplets('train_triplets.txt','sid_mismatches.txt')
+a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
