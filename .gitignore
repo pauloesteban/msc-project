@@ -1,0 +1,10 @@
+dataset/
+literature/
+paper/
+slides/
+DestinationForm.*
+hybrid-music/
+project code/
+project code.zip
+code/genre_classification/classification/convolutional_mlp_plots.py
+report/

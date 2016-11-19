@@ -1,27 +1,36 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#import time
-import pandas as pd
 import sys
 import os
+import zipfile
+import time
+import pandas as pd
 #import cPickle as pickle
+
+# Unzip Taste Profile subset
+def unzip_tasteprofile(zippedfile):
+    print("Unzipping Taste Profile subset...")
+    uncompressedFilename = os.path.splitext(zippedfile)[0]
+    with zipfile.ZipFile(zippedfile) as myzip:
+        myzip.extract(uncompressedFilename)
+    return uncompressedFilename
 
 # Read songIDs from Million Song Dataset songID-trackID mismatches
 def read_songid_mismatches(filename):
-    #start_time = time.time()
+    print("Reading songID mismatches...")
     with open(filename, 'r+') as f:
         songIdMismatches = set()
         for line in f:
             songIdMismatches.add(line[8:26])
     return songIdMismatches
 
-# Delete rows with songIDs mismatches from Taste Profile Subset
-def delete_mismatch_triplets(tripletsfile, mismatchesfile):
-    print("Reading songID mismatches...")
+# Delete triplets with songIDs mismatches
+def delete_mismatch_triplets(zippedfile, mismatchesfile):
+    tripletsfile = unzip_tasteprofile(zippedfile)
     mismatches = read_songid_mismatches(mismatchesfile)
-    print("There are %d songId-trackId mismatches" % len(mismatches))
-    print("Reading Taste Profile subset...")
+    print("There are %d songId-trackId mismatches." % len(mismatches))
+    print("Deleting triplets with errors...")
     for chunk in pd.read_table(
             tripletsfile,
             header=None,
@@ -37,10 +46,24 @@ def delete_mismatch_triplets(tripletsfile, mismatchesfile):
                 format='table',
                 append=True,
                 complevel=9,
-                complib='zlib'
+                complib='zlib',
+                fletcher32=True
                 )
-    print("Done")
-#elapsed_time = time.time() - start_time
+    # Delete the large text file!
+    os.remove(tripletsfile)
+    print("Done. Triplets saved in HDF5 format.")
+
+# Select most active users
+def most_active_users(tripletsfile,numSongsPlayed):
+    print("Selecting most active users (> %d ratings)..." % numSongsPlayed)
+    df = pd.read_hdf(tripletsfile, 'triplets')
+    dfActive = df.groupby('userId').filter(lambda x: len(x) > numSongsPlayed)
+    dfActive.to_hdf(
+            '../train_triplets_clean_most_active_users.h5',
+            'triplets',
+            mode='a',
+            complevel=9,
+            complib='zlib')
 
 if __name__ == '__main__':
     if len(sys.argv) < 1:
@@ -48,20 +71,25 @@ if __name__ == '__main__':
         sys.exit()
     taste_profile_path = os.path.abspath(sys.argv[1])
     os.chdir(taste_profile_path)
-    delete_mismatch_triplets('train_triplets.txt','sid_mismatches.txt')
+    start_time = time.time()
+    delete_mismatch_triplets('train_triplets.txt.zip','sid_mismatches.txt')
+    elapsed_time = time.time() - start_time
+    print("Execution time: %.3f seconds" % elapsed_time)
+    
+    
 #a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
 
 '''
-# Select most active users
+
 start_time = time.time()
 played_songs = 1000
-print("Reading (filtered) Taste Profile subset...")
+
 df = pd.read_csv(
     filename_out,
     delim_whitespace=False,
     header=None,
     names=['user','song','plays'])
-print("Selecting most active users (> %d ratings)..." % played_songs)
+
 df_active = df.groupby('user').filter(lambda x: len(x) > played_songs)
 
 print("Saving user-item matrix as dataframe...")
