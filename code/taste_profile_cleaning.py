@@ -25,12 +25,28 @@ def read_songid_mismatches(filename):
             songIdMismatches.add(line[8:26])
     return songIdMismatches
 
-# Delete triplets with songIDs mismatches
-def delete_mismatch_triplets(zippedfile, mismatchesfile):
+def delete_mismatch_triplets(zippedfile='train_triplets.txt.zip',
+                             mismatchesfile='sid_mismatches.txt',
+                             cleanfile='train_triplets.h5'):
+    """
+    Delete triplets with songIDs mismatches
+    
+    This is applied on Taste Profile subset.
+    
+    :type zippedfile: string
+    :param zippedfile: filename of the downloaded subset
+    
+    :type mismatchesfile: string
+    :param mismatchesfile: filename of the downloaded list of mismatches
+    
+    :type cleanfile: string
+    :param cleanfile: name of HDF5 file with triplets without mismatches
+    
+    """
     tripletsfile = unzip_tasteprofile(zippedfile)
     mismatches = read_songid_mismatches(mismatchesfile)
     print("There are %d songId-trackId mismatches." % len(mismatches))
-    print("Deleting triplets with errors...")
+    print("Deleting triplets that contains mismatches...")
     for chunk in pd.read_table(
             tripletsfile,
             header=None,
@@ -40,7 +56,7 @@ def delete_mismatch_triplets(zippedfile, mismatchesfile):
         chunk = chunk[~chunk.songId.isin(mismatches)]
         #chunk.to_csv(filename_out, mode='a', header=False, index=False)
         chunk.to_hdf(
-                '../train_triplets_clean.h5',
+                cleanfile,
                 'triplets',
                 mode='a',
                 format='table',
@@ -51,7 +67,7 @@ def delete_mismatch_triplets(zippedfile, mismatchesfile):
                 )
     # Delete the large text file!
     os.remove(tripletsfile)
-    print("Done. Triplets saved in HDF5 format.")
+    print("Done. Triplets saved in %s" % cleanfile)
 
 # Select most active users
 def most_active_users(tripletsfile,numSongsPlayed):
@@ -66,15 +82,15 @@ def most_active_users(tripletsfile,numSongsPlayed):
             complib='zlib')
 
 if __name__ == '__main__':
-    if len(sys.argv) < 1:
-        print("Not enough arguments %s" % sys.argv[0])
-        sys.exit()
-    taste_profile_path = os.path.abspath(sys.argv[1])
-    os.chdir(taste_profile_path)
+    #if len(sys.argv) < 1:
+        #print("Not enough arguments %s" % sys.argv[0])
+        #sys.exit()
+    dataset_path = os.path.join(os.path.split(os.getcwd())[0],'dataset')
+    os.chdir(dataset_path)
     start_time = time.time()
-    delete_mismatch_triplets('train_triplets.txt.zip','sid_mismatches.txt')
+    delete_mismatch_triplets()
     elapsed_time = time.time() - start_time
-    print("Execution time: %.3f seconds" % elapsed_time)
+    print("Execution time: %.2f minutes" % (elapsed_time/60))
     
     
 #a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
