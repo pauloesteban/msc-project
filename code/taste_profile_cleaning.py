@@ -11,7 +11,6 @@ import os
 import zipfile
 import time
 import pandas as pd
-#import cPickle as pickle
 
 # Unzip Taste Profile subset
 def unzip_tasteprofile(zippedfile):
