@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+
+
+@author: paulochiliguano
+"""
 
 import sys
 import os
@@ -25,11 +30,19 @@ def read_songid_mismatches(filename):
             songIdMismatches.add(line[8:26])
     return songIdMismatches
 
-def delete_mismatch_triplets(zippedfile='train_triplets.txt.zip',
-                             mismatchesfile='sid_mismatches.txt',
-                             cleanfile='train_triplets.h5'):
+def read_available_songid(filename):
+    print("Reading available songIDs...")
+    with open(filename, 'r+') as f:
+        songIdAvailable = set()
+        for line in f:
+            songIdAvailable.add(line[0:18])
+    return songIdAvailable   
+
+def delete_triplets(zippedfile='train_triplets.txt.zip',
+                    mismatchesfile='sid_mismatches.txt'):
     """
-    Delete triplets with songIDs mismatches
+    Delete triplets with songIDs mismatches and unavailable audio clips from
+    7Digital (UK)
     
     This is applied on Taste Profile subset.
     
@@ -39,21 +52,22 @@ def delete_mismatch_triplets(zippedfile='train_triplets.txt.zip',
     :type mismatchesfile: string
     :param mismatchesfile: filename of the downloaded list of mismatches
     
-    :type cleanfile: string
-    :param cleanfile: name of HDF5 file with triplets without mismatches
-    
     """
     tripletsfile = unzip_tasteprofile(zippedfile)
     mismatches = read_songid_mismatches(mismatchesfile)
     print("There are %d songId-trackId mismatches." % len(mismatches))
-    print("Deleting triplets that contains mismatches...")
+    availableClips = read_available_songid('7digital/CF_dataset_7digital.txt')
+    print("There are %d audio clips available." % len(availableClips))
+    cleanfile = os.path.splitext(tripletsfile)[0] + '.h5'
+    print("Deleting triplets with mismatches and unavailable songs...")
     for chunk in pd.read_table(
             tripletsfile,
             header=None,
             names=['userId', 'songId', 'numPlays'],
-            chunksize=10*len(mismatches),
+            chunksize=100*len(mismatches),
             ):
         chunk = chunk[~chunk.songId.isin(mismatches)]
+        chunk = chunk[chunk.songId.isin(availableClips)]
         #chunk.to_csv(filename_out, mode='a', header=False, index=False)
         chunk.to_hdf(
                 cleanfile,
@@ -67,19 +81,7 @@ def delete_mismatch_triplets(zippedfile='train_triplets.txt.zip',
                 )
     # Delete the large text file!
     os.remove(tripletsfile)
-    print("Done. Triplets saved in %s" % cleanfile)
-
-# Select most active users
-def most_active_users(tripletsfile,numSongsPlayed):
-    print("Selecting most active users (> %d ratings)..." % numSongsPlayed)
-    df = pd.read_hdf(tripletsfile, 'triplets')
-    dfActive = df.groupby('userId').filter(lambda x: len(x) > numSongsPlayed)
-    dfActive.to_hdf(
-            '../train_triplets_clean_most_active_users.h5',
-            'triplets',
-            mode='a',
-            complevel=9,
-            complib='zlib')
+    print("Triplets without mismatches saved in %s" % cleanfile)
 
 if __name__ == '__main__':
     #if len(sys.argv) < 1:
@@ -88,28 +90,20 @@ if __name__ == '__main__':
     dataset_path = os.path.join(os.path.split(os.getcwd())[0],'dataset')
     os.chdir(dataset_path)
     start_time = time.time()
-    delete_mismatch_triplets()
+    delete_triplets()
     elapsed_time = time.time() - start_time
     print("Execution time: %.2f minutes" % (elapsed_time/60))
-    
-    
+
 #a=pd.read_hdf('../train_triplets_clean.h5', 'triplets')
 
-'''
-
-start_time = time.time()
-played_songs = 1000
-
-df = pd.read_csv(
-    filename_out,
-    delim_whitespace=False,
-    header=None,
-    names=['user','song','plays'])
-
-df_active = df.groupby('user').filter(lambda x: len(x) > played_songs)
-
-print("Saving user-item matrix as dataframe...")
-df_active.to_pickle('../dataset/CF_dataset.pkl')
+#played_songs = 1000
+#df = pd.read_csv(
+    #filename_out,
+    #delim_whitespace=False,
+    #header=None,
+    #names=['user','song','plays'])
+#df_active = df.groupby('user').filter(lambda x: len(x) > played_songs)
+#df_active.to_pickle('../dataset/CF_dataset.pkl')
 
 #f = file('/Users/paulochiliguano/Documents/msc-project/dataset/\
 #CF_dataset.pkl', 'wb')
@@ -117,47 +111,21 @@ df_active.to_pickle('../dataset/CF_dataset.pkl')
 #f.close()
 
 # Select most frequent songs
-frequent_songs = 1500
-print("Selecting %d frequent songs..." % frequent_songs)
-counts = df_active['song'].value_counts().head(frequent_songs)
+#frequent_songs = 1500
+#print("Selecting %d frequent songs..." % frequent_songs)
+#counts = df_active['song'].value_counts().head(frequent_songs)
 #df_active = df_active.loc[df_active['song'].isin(counts.index), :]
-print("Saving Echonest songID list...")
-filename = '../dataset/CF_dataset_songID.txt'
-with open(filename, 'wb') as f:
-    for item in counts.index.tolist():
-        f.write("%s\n" % item)
-elapsed_time = time.time() - start_time
-print("Execution time: %.3f seconds" % elapsed_time)
-'''
+#print("Saving Echonest songID list...")
+#filename = '../dataset/CF_dataset_songID.txt'
+#with open(filename, 'wb') as f:
+    #for item in counts.index.tolist():
+       #f.write("%s\n" % item)
 
-'''
 #important
 #df['user'].value_counts().head(50)
 
-ddf = df.drop_duplicates(subset = 'song')
-ddf.to_csv('/homes/pchilguano/dataset/train_triplets_songID.csv',columns=['song'], header=False, index=False)
-
-
-
-with open('/homes/pchilguano/dataset/sid_mismatches_songID.txt', 'rb') as input1, open('/homes/pchilguano/dataset/train_triplets_songID.csv', 'rb') as input2, open('/homes/pchilguano/dataset/echonest_songID.txt', 'wb') as myfile:
-    l1 = list(csv.reader(input1))
-    chain1 = list(itertools.chain(*l1))
-    l2 = list(csv.reader(input2))
-    chain2 = list(itertools.chain(*l2))
-    l3 = set(chain2) - set(chain1)
-    wr = csv.writer(myfile, delimiter=',')
-    for item in l3:
-        wr.writerow([item])
-
-# Save Taste Profile dataset without SongID mismatches
-mdf = df[df.song.isin(l3)]
-mdf.to_csv('/homes/pchilguano/dataset/train_triplets_wo_mismatches.csv', header=False, index=False)
-
-result = pd.DataFrame()
-for chunk in pd.read_csv('/homes/pchilguano/dataset/train_triplets_wo_mismatches.csv', low_memory = False, delim_whitespace=False, chunksize=10000, names=['user','song','plays'], header=None):
-    chunk = chunk[chunk.song.isin(l3)]    
-    result = result.append(chunk.pivot(index='user', columns='song', values='plays')    
-    , ignore_index=True)
-    print (result.shape)
-'''
-
+#ddf = df.drop_duplicates(subset = 'song')
+#ddf.to_csv('/homes/pchilguano/dataset/train_triplets_songID.csv',
+           #columns=['song'],
+           #header=False,
+           #index=False)
