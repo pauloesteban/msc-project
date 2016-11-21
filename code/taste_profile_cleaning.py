@@ -6,7 +6,6 @@
 @author: paulochiliguano
 """
 
-import sys
 import os
 import zipfile
 import time
