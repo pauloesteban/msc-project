@@ -4,5 +4,6 @@ MSc Sound and Music Computing dissertation
 Required:
 - librosa
 
-## Citing
+Citing
+--------
 [DOI](http://dx.doi.org/10.1109/ICASSP.2016.7472151)
