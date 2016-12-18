@@ -3,6 +3,7 @@ MSc Sound and Music Computing dissertation
 
 Required:
 - librosa
+- theano
 
 Citing
 --------
