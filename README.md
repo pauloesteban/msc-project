@@ -1,4 +1,7 @@
-# Hybrid Music Recommender using content-based and social information
+## This code has been archived and deprecated
+For latest changes please checkout `develop` branch
+
+## Hybrid Music Recommender using content-based and social information
 MSc Sound and Music Computing dissertation
 
 Required:
