@@ -1,11 +1,7 @@
 # Hybrid Music Recommender using content-based and social information
 MSc Sound and Music Computing dissertation
 
-Required:
-```
-librosa
-theano
-```
+I am currently migrating this code to Python3
 
 Citing
 --------
