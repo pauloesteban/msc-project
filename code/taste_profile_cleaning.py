@@ -41,15 +41,15 @@ def delete_triplets(zippedfile='train_triplets.txt.zip',
     """
     Delete triplets with songIDs mismatches and unavailable audio clips from
     7Digital (UK)
-    
+
     This is applied on Taste Profile subset.
-    
+
     :type zippedfile: string
     :param zippedfile: filename of the downloaded subset
-    
+
     :type mismatchesfile: string
     :param mismatchesfile: filename of the downloaded list of mismatches
-    
+
     """
     tripletsfile = unzip_tasteprofile(zippedfile)
     mismatches = read_songid_mismatches(mismatchesfile)

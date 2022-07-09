@@ -1,0 +1,126 @@
+% \documentclass[12pt,doubledspaced,oneside,openright]{qmwphd}
+% Final MSc project report using qmwphd.cls
+% \usepackage{moreverb} % This defines \verbatiminput.
+
+\documentclass[a4paper,12pt,times]{report}
+%PhD Thesis Template for the School of Electronic Engineering and Computer Science, Queen Mary University of London. Stripped from Dan Stowell's PhD.
+
+%BEFORE SUBMISSION DO THESE:
+% * deactivate all \includeonly
+% * ensure \doneit set to nothing
+% * ensure numbering CONTINUOUS from title page on through
+% * activate the includes of license, ack, etc
+% * check through for question mark errors in render
+% * make sure the bibliog doesn't have ugly urls in
+
+%\usepackage{ifdraft}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%\usepackage{natbib}
+%\usepackage{har2nat}
+\usepackage{rotating}
+\usepackage[breaklinks]{hyperref}
+\usepackage{subfig} % apparently subfig is the one to use not subfigure
+\usepackage{appendix}
+\usepackage{tipa}
+\usepackage{clrscode}
+\usepackage{setspace}
+\usepackage[absolute]{textpos} 
+
+\usepackage{csquotes}
+\usepackage[style=authoryear-ibid, backend=bibtex]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{adjustbox}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\begin{document}
+
+%\setlength{\TPHorizModule}{200mm} 
+%\setlength{\TPVertModule}{100mm} 
+%\textblockorigin{61mm}{19mm}
+	
+%%%%% thanks alex mclean for super-useful onscreen reading tip:
+%\usepackage[top=0.1in, bottom=0.1in, left=0.3in, right=0.3in, paperwidth=11in, paperheight=7in]{geometry} % activate for ONSCREEN reading shape AT HOME
+%\usepackage[top=0.1in, bottom=0.1in, left=0.3in, right=0.3in, paperwidth=11in, paperheight=8.5in]{geometry} % activate for ONSCREEN reading shape AT WORK
+
+\doublespacing{}
+\pagenumbering{gobble}
+%\frontmatter
+
+% titlepage stuff
+\begin{minipage}[t]{0.40\textwidth}
+	%\vspace{0.5cm}
+	{\large \textbf{School of Electronic\\Engineering and\\Computer Science}}\vspace{16.5cm}\newline
+	%{\large School of Electronic\\Engineering and\\Computer Science}\vspace{15.7cm}\newline
+	\includegraphics[scale=0.15]{Logo.png}\vspace{0.5cm}
+\end{minipage}
+\vline width 2pt
+\hspace{0.8cm}
+\begin{minipage}[t]{0.60\textwidth}	
+	%\vspace{0.5cm}
+	{\normalsize MSc Sound and Music Computing}\\
+	{\normalsize Project Report 2015}\vspace{5.5cm}\\
+	%\begin{doublespace}
+	%\title{Hybrid music recommender using content-based and social information}
+	\textbf{\Large Hybrid music recommender\\using content-based and\\social information}\newline\\%\vspace{.5cm}\\
+	{\large Paulo Esteban Chiliguano Torres}\vspace{7cm}\\%\hspace{0.5cm}\vspace{1.0cm}
+		%\textbf{\HUGE Intuitive Gestural\\Interaction with\\Sampled Sounds}\vspace{4.5cm}\\
+	%\end{doublespace}
+	\flushright
+	{\normalsize \today}%\hspace{0.5cm}
+
+\end{minipage}
+
+%\title{Hybrid music recommender using content-based and social information}
+%\author{Paulo Esteban Chiliguano Torres \\
+%	\\
+%	Project Report 2015\\
+%	MSc Sound and Music Computing\\
+%	\\
+%	School of Electronic Engineering and Computer Science\\
+%	Queen Mary University of London
+%}
+
+%\date{August 2015}
+
+
+% \author{Paulo Esteban Chiliguano Torres}
+% \title{Hybrid music recommender using content-based and social information}
+% \qualification{Master of Science} 
+
+\include{acknowledgements/acknowledgements}
+
+% \begin{summary}
+% \end{summary}
+\include{abstract/abstract}
+
+
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+
+% Start the main context
+% numbering starts from here:
+%\mainmatter
+
+\include{chapter1/introduction}
+\include{chapter2/background}
+\include{chapter3/ch3}
+\include{chapter4/evaluation}
+\include{chapter5/results}
+\include{chapter6/conclusions}
+
+%\bibliographystyle{agsm}
+\addcontentsline{toc}{chapter}{References}
+\printbibliography[title=References]
+
+%\backmatter
+
+\end{document}

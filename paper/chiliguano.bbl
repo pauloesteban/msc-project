@@ -1,0 +1,121 @@
+\begin{thebibliography}{10}
+
+\bibitem{melville2010recommender}
+Prem Melville and Vikas Sindhwani,
+\newblock ``Recommender systems,''
+\newblock in {\em Encyclopedia of machine learning}, pp. 829--838. Springer,
+  2010.
+
+\bibitem{Yao2015453}
+L.~Yao, Q.Z. Sheng, A.H.H. Ngu, J.~Yu, and A.~Segev,
+\newblock ``Unified collaborative and content-based web service
+  recommendation,''
+\newblock {\em IEEE Transactions on Services Computing}, vol. 8, no. 3, pp.
+  453--466, 2015.
+
+\bibitem{Burke2002331}
+R.~Burke,
+\newblock ``Hybrid recommender systems: Survey and experiments,''
+\newblock {\em User Modelling and User-Adapted Interaction}, vol. 12, no. 4,
+  pp. 331--370, 2002.
+
+\bibitem{Hu2008263}
+Y.~Hu, C.~Volinsky, and Y.~Koren,
+\newblock ``Collaborative filtering for implicit feedback datasets,''
+\newblock {\em Proceedings - IEEE International Conference on Data Mining,
+  ICDM}, pp. 263--272, 2008.
+
+\bibitem{Yin2012896}
+H.~Yin, B.~Cui, J.~Li, J.~Yao, and C.~Chen,
+\newblock ``Challenging the long tail recommendation,''
+\newblock {\em Proceedings of the VLDB Endowment}, vol. 5, no. 9, pp. 896--907,
+  2012.
+
+\bibitem{Dai20141760}
+C.~Dai, F.~Qian, W.~Jiang, Z.~Wang, and Z.~Wu,
+\newblock ``A personalized recommendation system for netease dating site,''
+\newblock {\em Proceedings of the VLDB Endowment}, vol. 7, no. 13, pp.
+  1760--1765, 2014.
+
+\bibitem{Lops2011}
+Pasquale Lops, Marco de~Gemmis, and Giovanni Semeraro,
+\newblock ``Content-based recommender systems: State of the art and trends,''
+\newblock in {\em Recommender Systems Handbook}, Francesco Ricci, Lior Rokach,
+  Bracha Shapira, and Paul~B. Kantor, Eds., pp. 73--105. Springer US, 2011.
+
+\bibitem{Yoshii2008435}
+K.~Yoshii, M.~Goto, K.~Komatani, T.~Ogata, and H.G. Okuno,
+\newblock ``An efficient hybrid music recommender system using an incrementally
+  trainable probabilistic generative model,''
+\newblock {\em IEEE Transactions on Audio, Speech and Language Processing},
+  vol. 16, no. 2, pp. 435--447, 2008.
+
+\bibitem{NIPS2013_5004}
+Aaron van~den Oord, Sander Dieleman, and Benjamin Schrauwen,
+\newblock ``Deep content-based music recommendation,''
+\newblock in {\em Advances in Neural Information Processing Systems 26}, C.J.C.
+  Burges, L.~Bottou, M.~Welling, Z.~Ghahramani, and K.Q. Weinberger, Eds., pp.
+  2643--2651. Curran Associates, Inc., 2013.
+
+\bibitem{Bengio-et-al-2015-Book}
+Yoshua Bengio, Ian~J. Goodfellow, and Aaron Courville,
+\newblock ``Deep learning,''
+\newblock Book in preparation for MIT Press, 2015.
+
+\bibitem{Bertin-Mahieux2011}
+Thierry Bertin-Mahieux, Daniel~P.W. Ellis, Brian Whitman, and Paul Lamere,
+\newblock ``The million song dataset,''
+\newblock in {\em {Proceedings of the 12th International Conference on Music
+  Information Retrieval ({ISMIR} 2011)}}, 2011.
+
+\bibitem{pelikan2015estimation}
+Martin Pelikan, Mark~W Hauschild, and Fernando~G Lobo,
+\newblock ``Estimation of distribution algorithms,''
+\newblock in {\em Springer Handbook of Computational Intelligence}, pp.
+  899--928. Springer, 2015.
+
+\bibitem{Ding2015451}
+C.~Ding, L.~Ding, and W.~Peng,
+\newblock ``Comparison of effects of different learning methods on estimation
+  of distribution algorithms,''
+\newblock {\em Journal of Software Engineering}, vol. 9, no. 3, pp. 451--468,
+  2015.
+
+\bibitem{Santana:Bielza:Larrañaga:Lozano:Echegoyen:Mendiburu:Armañanzas:Shakya:2009:JSSOBK:v35i07}
+Roberto Santana, Concha Bielza, Pedro Larrañaga, Jose~A. Lozano, Carlos
+  Echegoyen, Alexander Mendiburu, Rubén Armañanzas, and Siddartha Shakya,
+\newblock ``Mateda-2.0: A matlab package for the implementation and analysis of
+  estimation of distribution algorithms,''
+\newblock {\em Journal of Statistical Software}, vol. 35, no. 7, pp. 1--30, 7
+  2010.
+
+\bibitem{1242}
+\`{O}. Celma,
+\newblock {\em Music Recommendation and Discovery in the Long Tail},
+\newblock Ph.D. thesis, Universitat Pompeu Fabra, Barcelona, 2008.
+
+\bibitem{Tzanetakis2002293}
+G.~Tzanetakis and P.~Cook,
+\newblock ``Musical genre classification of audio signals,''
+\newblock {\em IEEE Transactions on Speech and Audio Processing}, vol. 10, no.
+  5, pp. 293--302, 2002.
+
+\bibitem{DBLP:journals/corr/KereliukSL15}
+Corey Kereliuk, Bob~L. Sturm, and Jan Larsen,
+\newblock ``Deep learning and music adversaries,''
+\newblock {\em CoRR}, vol. abs/1507.04761, 2015.
+
+\bibitem{Liang2014781}
+T.~Liang, Y.~Liang, J.~Fan, and J.~Zhao,
+\newblock ``A hybrid recommendation model based on estimation of distribution
+  algorithms,''
+\newblock {\em Journal of Computational Information Systems}, vol. 10, no. 2,
+  pp. 781--788, 2014.
+
+\bibitem{gallagher2007bayesian}
+Marcus Gallagher, Ian Wood, Jonathan Keith, and George Sofronov,
+\newblock ``Bayesian inference in estimation of distribution algorithms,''
+\newblock in {\em Evolutionary Computation, 2007. CEC 2007. IEEE Congress on}.
+  IEEE, 2007, pp. 127--133.
+
+\end{thebibliography}

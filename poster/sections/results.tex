@@ -1,0 +1,44 @@
+
+\section{Results}
+
+\begin{itemize}
+\item 20\% of song ratings is the test set, the other 80\% is the training set, for each user. The number of users evaluated is 53.
+\item For each song in the  test set, we look up if the song is included or not
+in the produced top-N recommendations.
+%\item Examples of classification results are shown below:
+\end{itemize}
+
+\begin{center}
+\resizebox*{1.0\columnwidth}{!}{
+
+	\begin{tabular}{c| c| c| c| c} % centered columns (4 columns)
+		\hline\hline %inserts double horizontal lines
+		Recommender & Precision & Recall & F1 & Accuracy \\ [0.5ex] % inserts table
+		%heading
+		\hline % inserts single horizontal line
+		Content-based (baseline) & 0.275 $\pm$ 0.087 & 0.010 $\pm$ 0.003 & 0.020 $\pm$ 0.007 & 0.681 $\pm$ 0.008 \\ % inserting body of the table
+		Hybrid (discrete EDA) & \textbf{0.391 $\pm$ 0.182} & \textbf{0.013 $\pm$ 0.007} & \textbf{0.025 $\pm$ 0.013} & \textbf{0.685 $\pm$ 0.009} \\
+		Hybrid (continuous UMDA) & 0.318 $\pm$ 0.142 & 0.011 $\pm$ 0.005 & 0.021 $\pm$ 0.011 & 0.683 $\pm$ 0.009 \\ [1ex] % [1ex] adds vertical space
+		\hline %inserts single line
+	\end{tabular}
+
+}
+\end{center}
+%\begin{center}
+%\begin{tabular}{c@{ }c@{ }c@{ }c@{ }c@{ }c@{ }c}
+%bananas &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} \\
+%plums &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/bananas2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} &
+%\resizebox*{0.12\columnwidth}{!}{\includegraphics{images/fruit/plums2.eps}} \\
+%\end{tabular}
+%\end{center}

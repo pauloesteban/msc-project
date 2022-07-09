@@ -1,0 +1,129 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Aims}{3}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Thesis outline}{4}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Background}{5}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Online Social Networks}{6}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Music services platforms}{7}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Recommender Systems}{8}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Collaborative filtering}{8}{subsection.2.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{The cold start problem}{10}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{The long tail phenomenon}{11}{section*.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.2}Content-based filtering}{11}{subsection.2.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Limitations of CB filtering}{12}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.3}Item Representation}{12}{subsection.2.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.4}User Modelling}{13}{subsection.2.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.5}Hybrid recommender approaches}{13}{subsection.2.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Music Information Retrieval}{15}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Genre classification}{15}{subsection.2.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}Music recommender systems}{16}{subsection.2.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Collaborative retrieval music recommender}{16}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Hybrid music recommender}{16}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Deep Learning}{18}{section.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.1}Deep Neural Networks}{18}{subsection.2.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Music Feature Learning}{20}{section*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.2}Convolutional Deep Neural Networks}{20}{subsection.2.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Deep content-based music recommendation}{22}{section*.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Estimation of Distribution Algorithms}{23}{section.2.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.1}A Hybrid Recommendation Model Based on EDA}{24}{subsection.2.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6.2}Continuous Univariate Marginal Distribution Algorithm}{26}{subsection.2.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Summary}{27}{section.2.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Methodology}{28}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Data collection}{29}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Taste Profile subset cleaning}{29}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}Fetching audio data}{30}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Intermediate time-frequency representation for audio signals}{31}{subsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Data preprocessing}{34}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Rating from implicit user feedback}{34}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Standardise time-frequency representation}{35}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Algorithms}{36}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Probability of music genre representation}{36}{subsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{CDNN architecture}{37}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Learning parameters}{38}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Vector representation}{39}{section*.27}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}User profile modelling}{39}{subsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Modelling with Permutation EDA}{40}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Modelling with $UMDA_c^G$}{40}{section*.29}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.3}Top-N songs recommendation}{41}{subsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Top-N recommendations in CB baseline}{42}{section*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Top-N recommendations in hybrid music recommender}{43}{section*.31}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Summary}{43}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Experiments}{44}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Evaluation for recommender systems}{44}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}Types of experiments}{44}{subsection.4.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Evaluation strategies}{45}{subsection.4.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.3}Decision based metrics}{46}{subsection.4.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Evaluation method}{47}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Training set and test set}{47}{subsection.4.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}Top-N evaluation}{47}{subsection.4.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Results}{48}{chapter.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Genre classification results}{48}{section.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Recommender evaluation results}{49}{section.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Conclusion}{51}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Future work}{52}{section.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{References}{53}{section.6.1}

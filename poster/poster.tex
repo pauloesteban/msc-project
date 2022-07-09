@@ -1,0 +1,63 @@
+
+\documentclass[a0,landscape]{a0poster}
+\input{sections/style}
+
+\begin{document}
+
+\vspace{1cm}
+\input{sections/header}
+\vspace{1cm}
+
+
+% ----------------------------------------------------------------
+
+
+\begin{multicols}{3}
+
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+{\input{sections/intro}}}
+
+\vspace{1cm}
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+{\input{sections/method1}}}
+
+\vspace{1cm}
+\colorbox{qmuldarkblue}{\parbox{1.0\columnwidth}
+	{\begin{center}
+		\resizebox*{0.4\columnwidth}{!}{\includegraphics{images/logos/qmulblue.eps}}
+	\end{center}}
+	}
+
+\vspace{1cm}
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+{\input{sections/method2}\vspace{0.8cm}}}
+
+\vspace{1cm}
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+{\input{sections/results}}}
+
+\vspace{1cm}
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+{\input{sections/conc}}}
+
+\vspace{1cm}
+\fcolorbox{black}{white}{\parbox{1.0\columnwidth}
+	{\center{\Huge\bf\color{qmuldarkblue}References}
+		\vspace{-3cm}
+		\small
+			\bibliographystyle{IEEEbib}
+			\bibliography{strings,refs}}}
+
+\end{multicols}
+
+
+% ----------------------------------------------------------------
+
+
+%\vspace{-1cm}
+%\small\input{sections/biblio}\normalsize
+
+\vspace{0.5cm}
+\input{sections/footer}
+
+\end{document}

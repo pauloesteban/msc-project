@@ -1,0 +1,71 @@
+\chapter{Experiments}
+\label{ch:experiments}
+In order to evaluate the performance of a recommender system, there are several scenarios to be considered depending on the structure of the dataset and the prediction accuracy. It is therefore necessary to determine a suitable experiment for the evaluation of our proposed hybrid music recommender that employs a rating matrix and vector representation of songs as inputs to produce \textit{top-N} song recommendations.
+
+In addition, the performance of our hybrid approaches is compared with a pure content-based recommender algorithm.
+
+%\section{Experiment aims}
+%deviation between the actual and predicted ratings is measured 
+%the prediction ratings are compared with a model-based collaborative filtering.
+
+\section{Evaluation for recommender systems}
+
+\subsection{Types of experiments}
+The scenarios for experiments requires to define an hypothesis, controlling variables and generalization of the results. Three types of experiments \parencite{export:115396} can be used to compare and evaluate recommender algorithms:
+\begin{itemize}
+\item \textbf{Offline experiments:} where recorded historic data of users' ratings are used to simulate online users behaviour. The aim of this type of experiment is to refine approaches before testing with real users. On the other hand, results may have biases due to distribution of users.
+\item \textbf{User studies:} where test subjects interact with the recommendation system and its behaviour is recorded giving a large sets of quantitative measurements. One disadvantage of this type of experiment is to recruit subjects that represent the population of the users of the real recommendation system.
+\item \textbf{Online evaluation:} where the designer of the recommender application expect to influence the users' behaviour. Usually, this type of evaluation are run after extensive offline studies.
+\end{itemize}
+
+\subsection{Evaluation strategies}
+On the other hand, evaluation of recommender systems can be classified \parencite{1242} in:
+\begin{itemize}
+\item \textbf{System-centric} process has been extensively exploited in CF systems. The accuracy of recommendations is based exclusively on users' dataset and is evaluated through predictive accuracy, decision based and rank based metrics.
+\item \textbf{Network-centric} process examines other components of the recommendation system, such as diversity of recommendations, and they are measured as a complement of the metrics of system-centric evaluation.
+\item \textbf{User-centric:} The perceived quality and usefulness of recommendations for the users are measured via provided feedback.
+\end{itemize}
+
+\subsection{Decision based metrics}
+Our hybrid recommender produces a list of songs for each user, hence, it is necessary to evaluate the recommendation with a metrics derived from \textit{confusion matrix} that reflects the categorisation of test items as true positives (TP), false positives (FP), true negatives (TN) and false negatives (FN). In this project we consider the following metrics \parencite{1242}:
+\begin{itemize}
+	\item \textbf{Precision} is the ratio of correct positive predictions.
+	\begin{equation}
+	Precision = \frac{TP} {TP+FP}\label{eq:1}
+	\end{equation}
+	\item \textbf{Recall} is the ratio of positive instances predicted as positive.
+	\begin{equation}
+	Recall = \frac{TP} {TP+FN}\label{eq:2}
+	\end{equation}
+	\item \textbf{F1 measure}, is the harmonic relation of precision and recall.
+	\begin{equation}
+	Recall = \frac{2 \times Precision \times Recall} {Precision+Recall}\label{eq:3}
+	\end{equation}
+	\item \textbf{Accuracy}, is the ratio of correct predictions.
+	\begin{equation}
+	Recall = \frac{TP+TN} {TP+FP+TN+FN}\label{eq:4}
+	\end{equation}
+\end{itemize}
+
+
+%Text \eqref{eq:1}
+
+
+%Text \eqref{eq:2}
+
+
+\section{Evaluation method}
+The hybrid music recommender system proposed in this project is evaluated through an offline experiment and the results are presented with decision based metrics described in the previous section.
+
+\subsection{Training set and test set}
+The normalised taste profile dataset (refer to subsection~\ref{subsec:rating}) is split in a training and a test set. For each user in the dataset, a random sample corresponding to 20 \% of the total number of ratings is assigned to the test set, and the rest 80 \% is assigned to the training set. The split process is iterated for 10 times, resulting in a total of 10 training and 10 test sets.
+
+\subsection{Top-N evaluation}
+For each song in the user test set, we look up if the song is included or not in the list of top-N recommendations.
+
+If the test song is in the top-N recommendation and if the rating of the test song is above the threshold (rating $>$ 2), we count as a true positive, otherwise is counted as a false positive.
+
+If the test song is not in the top-N recommendation and if the rating of the test song is above the threshold, we count as a false negative, otherwise is counted as a true positive.
+
+%\subsection{Evaluation measures}
+%Because the dataset does not include explicit ratings, hence, the number of plays of tracks are considered as users' behaviours,

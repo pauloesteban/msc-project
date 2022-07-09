@@ -1,0 +1,30 @@
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\chapter{Introduction}
+Music has accompanied social activities on our daily lives and has influenced the shape of the technology landscape that we have today. Portable media players, mobile device applications or music streaming services enable us the access to a large volume of digital recorded music. This vast range of music tracks might include songs that are relevant or not to a listener, being necessary to develop facilities to bring out appropriate musical pieces to an user.
+
+Recommender systems can be described as engines that guide the users to suitable objects from a large number of options in a particular domain such as books, films or music. The available information of users and items' attributes is analysed and exploited by the recommender systems to produce a list of previously unseen items that each user might find enjoyable. Depending on the analysed data, the design of a recommender can be focused on historical ratings given by users or similarities between the attributes of items that an user already rated.
+
+\section{Motivation}
+Due to the available information of relationship between users and items would be sparse, e.g., most part of the users tend to do not give enough ratings, the accuracy of predictions would decrease. Another disadvantage of traditional recommender systems, referred as \textit{cold-start problem}, arises when a new item cannot be recommended until it gets enough ratings, or, equivalently, when a new user does not have any ratings \parencite{melville2010recommender}. In order to alleviate the rating sparsity and cold-start problems, there is the motivation to combine two or more recommendation techniques into hybrid approaches. 
+
+Deep learning is an approach to artificial intelligence for describing raw data as a nested hierarchy of concepts, with each abstract concept defined in terms of simpler representations. For example, deep learning can describe high-level features of an image of a car such as position, colour or brightness of the object, in terms of contours, which are also represented in terms of edges. \parencite{Bengio-et-al-2015-Book}  
+
+Inspired in natural evolution of species, estimation of distribution algorithms (EDAs) \parencite{larranaga2002estimation} are robust techniques developed during the last decade for optimisation in Statistics and Machine Learning fields. EDAs can capture the explicit structure of a population with a probability distribution estimated from the best individuals of that population.
+
+\section{Aims}
+We aim to design and implement a hybrid music recommender to mitigate the cold-start problem in a content-based recommendation strategy. The architecture of our hybrid recommender approach combines two fundamental tasks \parencite{recsys2012}: \textit{user modelling} and \textit{information filtering}. Both of these techniques require user-item data to learn user's interest and select items based on their content description, respectively.
+
+In this project, user-item information is obtained from the Taste Profile dataset, which is a complementary subset of the Million Song Dataset \parencite{Bertin-Mahieux2011} and provides real world listeners activity, i.e., play counts of a song. On the other hand, the items to consolidate the music library are obtained by using the unique identifier of each song to fetch its audio data from 7digital.
+
+A convolutional deep neural network (CDNN), which is a deep learning model, is employed to describe the time-frequency content of each audio clip with a n-dimensional vector, whose dimensions represent the probability of a clip to belong to an specific music genre. In this project, we bound the number of music genres to 10.
+
+As a primary contribution of this project, estimation of distribution algorithms (EDAs) are investigated to model user profiles in terms of probabilities of music genres preferences. The algorithms use play count and the content vector of each song in the user's collection to optimise the profile. In addition, each dimension in the content vector is treated as a discrete and continuous variable, for evaluation purposes. To our knowledge, this is the first approach that uses a continuous EDA for user profile modelling in recommender systems.
+
+Each user profile then is compared with the vector representation of an audio clip to compute the similarity value between them. Recommendations for an user are built up by selecting the clips with highest similarity values.
+
+The evaluation of our hybrid music recommender approach is assessed by comparing the results obtained with a traditional content-based recommender.
+
+\section{Thesis outline}
+
+The rest of the report is organised as follows: Chapter~\ref{ch:background} provides an overview in recommender systems. Recommendation process, associated challenges, and related work based on state-of-the-art techniques are discussed. In Chapter~\ref{ch:methodology}, we present our proposed hybrid recommendation approach and describe the stages and algorithms in detail. The experiments and evaluation protocols are to assess the performance of the hybrid recommender presented in Chapter~\ref{ch:experiments}. In Chapter~\ref{ch:results}, we proceed to discuss and analyse the results from the conducted experiments to evaluate the proposed hybrid music recommender. In Chapter~\ref{ch:conclusion}, we present the conclusions and some thoughts for further research.

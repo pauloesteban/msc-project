@@ -1,0 +1,92 @@
+\chapter{Results}
+\label{ch:results}
+%\begin{minipage}{\textwidth}
+	%\centering
+	%\includegraphics[scale=.6]{"Project Images/Figure_GA02".png}
+	%\caption{\label{fig:frog1}This is a figure caption.}
+%\end{minipage}
+
+\section{Genre classification results}
+A total of 9 trials are executed for training, validating and testing the CDNN using the normalised spectrograms of GTZAN dataset (see subsection~\ref{subsec:normalised}). We obtained the following results showed in Table~\ref{table:genre}.
+\begin{table}[h!]
+	\caption{Genre classification results} % title of Table
+	\centering % used for centering table
+	\begin{tabular}{c c c c c} % centered columns (4 columns)
+		\hline\hline %inserts double horizontal lines
+		Trial & Validation error (\%) & Test error (\%) & Iterations & Time elapsed (min.) \\ [0.5ex] % inserts table
+		%heading
+		\hline % inserts single horizontal line
+		1 & 58.0 & 65.2 & 650 & 7.00 \\ % inserting body of the table
+		2 & 37.6 & 46.0 & 2150 & 13.07 \\
+		3 & 39.6 & 46.0 & 700 & 7.54 \\
+		4 & 35.6 & 36.8 & 550 & 6.01 \\
+		5 & 36.4 & 40.0 & 250 & 5.47 \\
+		6 & 40.4 & 44.8 & 150 & 5.41 \\
+		7 & 32.4 & 40.4 & 800 & 8.64 \\
+		8 & 36.0 & 38.8 & 250 & 5.42 \\
+		9 & 34.0 & 38.8 & 850 & 9.14 \\ [1ex] % [1ex] adds vertical space
+		\hline %inserts single line
+	\end{tabular}
+	\label{table:genre} % is used to refer this table in the text
+\end{table}
+
+For the initial trial, the error is higher because the weight and bias values for each unit of the layers in the deep learning classifier are randomly initialised.
+
+\section{Recommender evaluation results}
+\label{sec:recresults}
+In general, the results demonstrate the hybrid music recommender based on a permutation EDA presents a better performance compared with both the CB recommender and the hybrid approach based on a continuous EDA. Nevertheless, the recall values are lower in all cases. In Table~\ref{table:recn5}, the results of top-5 recommendation are shown.
+\begin{table}[h!]
+	\caption{Evaluation of recommender systems (N=5)} % title of Table
+	\centering % used for centering table
+	\begin{adjustbox}{max width=\textwidth}
+	\begin{tabular}{c c c c c} % centered columns (4 columns)
+		\hline\hline %inserts double horizontal lines
+		Recommender & Precision & Recall & F1 & Accuracy \\ [0.5ex] % inserts table
+		%heading
+		\hline % inserts single horizontal line
+		Content-based (baseline) & 0.275 $\pm$ 0.087 & 0.010 $\pm$ 0.003 & 0.020 $\pm$ 0.007 & 0.681 $\pm$ 0.008 \\ % inserting body of the table
+		Hybrid (permutation EDA) & \textbf{0.391 $\pm$ 0.182} & \textbf{0.013 $\pm$ 0.007} & \textbf{0.025 $\pm$ 0.013} & \textbf{0.685 $\pm$ 0.009} \\
+		Hybrid (continuous UMDA) & 0.318 $\pm$ 0.142 & 0.011 $\pm$ 0.005 & 0.021 $\pm$ 0.011 & 0.683 $\pm$ 0.009 \\ [1ex] % [1ex] adds vertical space
+		\hline %inserts single line
+	\end{tabular}
+	\end{adjustbox}
+	\label{table:recn5} % is used to refer this table in the text
+\end{table}
+
+In Table~\ref{table:recn10}, the results of top-10 songs recommendation are shown. In this case, the precision value improve for the CB recommender. The accuracy values for all recommender systems tend to decrease.
+\begin{table}[h!]
+	\caption{Evaluation of recommender systems (N=10)} % title of Table
+	\centering % used for centering table
+	\begin{adjustbox}{max width=\textwidth}
+		\begin{tabular}{c c c c c} % centered columns (4 columns)
+			\hline\hline %inserts double horizontal lines
+			Recommender & Precision & Recall & F1 & Accuracy \\ [0.5ex] % inserts table
+			%heading
+			\hline % inserts single horizontal line
+			Content-based (baseline) & 0.301 $\pm$ 0.059 & 0.022 $\pm$ 0.007 & 0.041 $\pm$ 0.012 & 0.678 $\pm$ 0.007 \\ % inserting body of the table
+			Hybrid (permutation EDA) & \textbf{0.370 $\pm$ 0.073} & \textbf{0.024 $\pm$ 0.007} & \textbf{0.045 $\pm$ 0.013} & \textbf{0.682 $\pm$ 0.009} \\
+			Hybrid (continuous UMDA) & 0.309 $\pm$ 0.100 & 0.019 $\pm$ 0.007 & 0.036 $\pm$ 0.013 & 0.679 $\pm$ 0.009 \\ [1ex] % [1ex] adds vertical space
+			\hline %inserts single line
+		\end{tabular}
+	\end{adjustbox}
+	\label{table:recn10} % is used to refer this table in the text
+\end{table}
+
+In Table~\ref{table:recn20}, the results of top-20 songs recommendation are shown. In this case, the recall values rise for all the recommender systems, compared with the top-5 and top-10 recommendations, but the precision and accuracy tend to decrease. At this point, we can deduce that our hybrid recommender approaches could improve the recall without losing reached precision if $N$ is in a value between 10 and 20.
+\begin{table}[h!]
+	\caption{Evaluation of recommender systems (N=20)} % title of Table
+	\centering % used for centering table
+	\begin{adjustbox}{max width=\textwidth}
+		\begin{tabular}{c c c c c} % centered columns (4 columns)
+			\hline\hline %inserts double horizontal lines
+			Recommender & Precision & Recall & F1 & Accuracy \\ [0.5ex] % inserts table
+			%heading
+			\hline % inserts single horizontal line
+			Content-based (baseline) & 0.281 $\pm$ 0.052 & 0.041 $\pm$ 0.006 & 0.071 $\pm$ 0.010 & 0.666 $\pm$ 0.006 \\ % inserting body of the table
+			Hybrid (permutation EDA) & \textbf{0.363 $\pm$ 0.041} & \textbf{0.047 $\pm$ 0.008} & \textbf{0.084 $\pm$ 0.014} & \textbf{0.676  $\pm$ 0.007} \\
+			Hybrid (continuous UMDA) & 0.302 $\pm$ 0.067 & 0.039 $\pm$ 0.011 & 0.070 $\pm$ 0.019 & 0.671 $\pm$ 0.010 \\ [1ex] % [1ex] adds vertical space
+			\hline %inserts single line
+		\end{tabular}
+	\end{adjustbox}
+	\label{table:recn20} % is used to refer this table in the text
+\end{table}
