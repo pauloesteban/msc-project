@@ -1,15 +1,51 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
 
+
+"""
+This is the starting point
 
 @author: paulochiliguano
 """
 
 import os
+import requests
+import tempfile
 import zipfile
 import time
 import pandas as pd
+
+
+def _read_song_id_mismatches():
+    """ Read song ID mismatches
+    """
+    url = "http://millionsongdataset.com/sites/default/files/tasteprofile/sid_mismatches.txt"
+    response = requests.get(url)
+    song_id_mismatches = set()
+
+    with tempfile.NamedTemporaryFile() as fp:
+        fp.write(response.content)
+        fp.seek(0)
+
+        for line in fp:
+            song_id_mismatches.add(line[8:26])
+    
+    return song_id_mismatches
+
+
+def _request_taste_profile_subset():
+    """ Request the Taste Profile Subset from MSD
+    """
+    url = "http://millionsongdataset.com/sites/default/files/challenge/train_triplets.txt.zip"
+    response = requests.get(url)
+
+    with tempfile.NamedTemporaryFile() as fp:
+        fp.write(response.content)
+        fp.seek(0)
+
+        with zipfile.ZipFile(fp) as myzip:
+            with myzip.open('train_triplets.txt') as myfile:
+                pass
+
 
 # Unzip Taste Profile subset
 def unzip_tasteprofile(zippedfile):
